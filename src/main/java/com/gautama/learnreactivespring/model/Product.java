@@ -1,6 +1,7 @@
 package com.gautama.learnreactivespring.model;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import java.util.UUID;
 
 @Data
+@AllArgsConstructor
 @Table(value = "product")
 public class Product{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -14,7 +14,13 @@ public class OrderScheduler {
 
     @Scheduled(cron = "${cron.generate}")
     public void scheduleOrder() {
+        log.info("Запуск задачи по генерации заказа");
+
         orderService.generate()
-                .subscribe();
+                .subscribe(
+                        order -> log.info("Создан заказ: {}", order),
+                        error -> log.error("Ошибка при генерации заказа", error),
+                        () -> log.debug("Завершение генерации заказа")
+                );
     }
 }

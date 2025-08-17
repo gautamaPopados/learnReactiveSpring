@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: learn-reactivespring
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost/ordersDb
+    username: postgres
+    password: postgres
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+cron:
+  generate: "*/50 * * * * *"

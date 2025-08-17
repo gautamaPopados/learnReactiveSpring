@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 
@@ -54,11 +55,34 @@ public class OrderService {
                 ))
                 .flatMap(orderRepository::save)
                 .doOnSuccess(o -> log.info("Заказ успешно сохранён: {}", o))
-                .doOnError(e -> log.error("Ошибка при генерации заказа", e));
+                .onErrorResume(e -> Mono.empty());
     }
 
     public Mono<Long> getTotalOrders() {
         return orderRepository.getTotalOrders()
-                .doOnError(e -> log.error("Ошибка при получении общего количества заказов", e));
+                .doOnError(e -> log.error("Ошибка при получении общего количества заказов", e))
+                .onErrorReturn(0L);
+    }
+
+    public Flux<Order> getOrders(Optional<String> customerName, Optional<String> productTitle) {
+        Flux<Order> orders = orderRepository.findAll();
+
+        if (customerName.isPresent()) {
+            orders = orders.filterWhen(order ->
+                    customerRepository.findById(order.getCustomerId())
+                            .map(c -> c.getName().toLowerCase().contains(customerName.get().toLowerCase()))
+            );
+        }
+
+        if (productTitle.isPresent()) {
+            orders = orders.filterWhen(order ->
+                    productRepository.findById(order.getProductId())
+                            .map(p -> p.getTitle().toLowerCase().contains(productTitle.get().toLowerCase()))
+            );
+        }
+
+        return orders
+                .doOnError(e -> log.error("Ошибка при поиске заказов", e))
+                .onErrorResume(e -> Flux.empty());
     }
 }
