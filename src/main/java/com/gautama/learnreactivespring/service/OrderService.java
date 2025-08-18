@@ -1,8 +1,6 @@
 package com.gautama.learnreactivespring.service;
 
-import com.gautama.learnreactivespring.model.Customer;
 import com.gautama.learnreactivespring.model.Order;
-import com.gautama.learnreactivespring.model.Product;
 import com.gautama.learnreactivespring.repository.CustomerRepository;
 import com.gautama.learnreactivespring.repository.OrderRepository;
 import com.gautama.learnreactivespring.repository.ProductRepository;

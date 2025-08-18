@@ -10,6 +10,5 @@ import java.util.UUID;
 
 @Repository
 public interface CustomerRepository  extends ReactiveCrudRepository<Customer, String> {
-    Flux<Customer> findByName(String name);
     Mono<Customer> findById(UUID id);
 }
