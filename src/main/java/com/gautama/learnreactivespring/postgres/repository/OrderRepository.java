@@ -1,6 +1,6 @@
-package com.gautama.learnreactivespring.repository;
+package com.gautama.learnreactivespring.postgres.repository;
 
-import com.gautama.learnreactivespring.model.Order;
+import com.gautama.learnreactivespring.postgres.entity.Order;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;

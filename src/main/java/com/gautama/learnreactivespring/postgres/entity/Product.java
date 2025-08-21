@@ -1,4 +1,4 @@
-package com.gautama.learnreactivespring.model;
+package com.gautama.learnreactivespring.postgres.entity;
 
 
 import lombok.AllArgsConstructor;

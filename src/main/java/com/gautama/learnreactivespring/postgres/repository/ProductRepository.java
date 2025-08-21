@@ -1,6 +1,6 @@
-package com.gautama.learnreactivespring.repository;
+package com.gautama.learnreactivespring.postgres.repository;
 
-import com.gautama.learnreactivespring.model.Product;
+import com.gautama.learnreactivespring.postgres.entity.Product;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;

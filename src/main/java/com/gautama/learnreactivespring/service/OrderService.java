@@ -1,9 +1,9 @@
 package com.gautama.learnreactivespring.service;
 
-import com.gautama.learnreactivespring.model.Order;
-import com.gautama.learnreactivespring.repository.CustomerRepository;
-import com.gautama.learnreactivespring.repository.OrderRepository;
-import com.gautama.learnreactivespring.repository.ProductRepository;
+import com.gautama.learnreactivespring.postgres.entity.Order;
+import com.gautama.learnreactivespring.mysql.repository.CustomerRepository;
+import com.gautama.learnreactivespring.postgres.repository.OrderRepository;
+import com.gautama.learnreactivespring.postgres.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

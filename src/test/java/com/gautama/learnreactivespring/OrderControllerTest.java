@@ -1,7 +1,7 @@
 package com.gautama.learnreactivespring;
 
 import com.gautama.learnreactivespring.controller.OrderController;
-import com.gautama.learnreactivespring.model.Order;
+import com.gautama.learnreactivespring.postgres.entity.Order;
 import com.gautama.learnreactivespring.service.OrderService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

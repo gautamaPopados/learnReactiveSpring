@@ -1,6 +1,6 @@
 package com.gautama.learnreactivespring.controller;
 
-import com.gautama.learnreactivespring.model.Order;
+import com.gautama.learnreactivespring.postgres.entity.Order;
 import com.gautama.learnreactivespring.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

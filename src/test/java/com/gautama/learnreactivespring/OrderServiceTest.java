@@ -1,11 +1,11 @@
 package com.gautama.learnreactivespring;
 
-import com.gautama.learnreactivespring.model.Customer;
-import com.gautama.learnreactivespring.model.Order;
-import com.gautama.learnreactivespring.model.Product;
-import com.gautama.learnreactivespring.repository.CustomerRepository;
-import com.gautama.learnreactivespring.repository.OrderRepository;
-import com.gautama.learnreactivespring.repository.ProductRepository;
+import com.gautama.learnreactivespring.mysql.entity.Customer;
+import com.gautama.learnreactivespring.postgres.entity.Order;
+import com.gautama.learnreactivespring.postgres.entity.Product;
+import com.gautama.learnreactivespring.mysql.repository.CustomerRepository;
+import com.gautama.learnreactivespring.postgres.repository.OrderRepository;
+import com.gautama.learnreactivespring.postgres.repository.ProductRepository;
 import com.gautama.learnreactivespring.service.OrderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
