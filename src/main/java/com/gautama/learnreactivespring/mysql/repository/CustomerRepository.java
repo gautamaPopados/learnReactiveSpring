@@ -8,6 +8,6 @@ import reactor.core.publisher.Mono;
 import java.util.UUID;
 
 @Repository
-public interface CustomerRepository  extends ReactiveCrudRepository<Customer, String> {
+public interface CustomerRepository extends ReactiveCrudRepository<Customer, String> {
     Mono<Customer> findById(UUID id);
 }

@@ -12,7 +12,10 @@ app:
     mysql:
       url: r2dbc:mysql://localhost/customersdb
       username: root
-      password: root
+      password: 1234
+
+logging.level.org.springframework.web: DEBUG
+logging.level.org.hibernate: DEBUG
 
 cron:
   generate: "*/10 * * * * *"

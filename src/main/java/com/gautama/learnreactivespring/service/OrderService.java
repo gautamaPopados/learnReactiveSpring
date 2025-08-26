@@ -53,6 +53,7 @@ public class OrderService {
                 ))
                 .flatMap(orderRepository::save)
                 .doOnSuccess(o -> log.info("Заказ успешно сохранён: {}", o))
+                .doOnError(e -> log.error("Ошибка при генерации заказа", e))
                 .onErrorResume(e -> Mono.empty());
     }
 
