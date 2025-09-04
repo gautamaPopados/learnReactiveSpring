@@ -37,6 +37,7 @@ public class MysqlConfig {
                         .build()
         );
     }
+
     @Bean
     @Qualifier("mysqlEntityTemplate")
     public R2dbcEntityOperations mysqlEntityTemplate(

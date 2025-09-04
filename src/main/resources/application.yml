@@ -2,6 +2,13 @@ spring:
   application:
     name: learn-reactivespring
 
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+    packages:
+      trust-all: true
+
 app:
   r2dbc:
     postgres:
@@ -19,3 +26,6 @@ logging.level.org.hibernate: DEBUG
 
 cron:
   generate: "*/10 * * * * *"
+
+queue:
+  orders: order-queue

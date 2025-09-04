@@ -6,6 +6,8 @@ import com.gautama.learnreactivespring.postgres.repository.OrderRepository;
 import com.gautama.learnreactivespring.postgres.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -21,6 +23,10 @@ public class OrderService {
     private final CustomerRepository customerRepository;
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
+    private final JmsTemplate jmsTemplate;
+
+    @Value("${queue.orders}")
+    private String orderQueue;
 
     Random random = new Random();
 
@@ -52,7 +58,10 @@ public class OrderService {
                         random.nextInt(100)
                 ))
                 .flatMap(orderRepository::save)
-                .doOnSuccess(o -> log.info("Заказ успешно сохранён: {}", o))
+                .doOnSuccess(o -> {
+                    log.info("Заказ успешно сохранён: {}", o);
+                    jmsTemplate.convertAndSend(orderQueue, o);
+                })
                 .doOnError(e -> log.error("Ошибка при генерации заказа", e))
                 .onErrorResume(e -> Mono.empty());
     }
