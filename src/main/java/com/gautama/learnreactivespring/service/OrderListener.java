@@ -26,4 +26,8 @@ public class OrderListener {
 
         log.info("Среднее количество товаров в заказе: {}", String.format("%.2f", avgQuantity));
     }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
 }
