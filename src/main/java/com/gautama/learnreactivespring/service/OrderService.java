@@ -58,10 +58,9 @@ public class OrderService {
                         random.nextInt(100)
                 ))
                 .flatMap(orderRepository::save)
-                .doOnSuccess(o -> {
-                    log.info("Заказ успешно сохранён: {}", o);
-                    jmsTemplate.convertAndSend(orderQueue, o);
-                })
+                .flatMap(o -> Mono.fromRunnable(() -> jmsTemplate.convertAndSend(orderQueue, o))
+                        .thenReturn(o))
+                .doOnSuccess(o -> log.info("Заказ успешно сохранён и отправлен в очередь: {}", o))
                 .doOnError(e -> log.error("Ошибка при генерации заказа", e))
                 .onErrorResume(e -> Mono.empty());
     }
